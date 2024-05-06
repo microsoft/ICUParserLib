@@ -50,7 +50,7 @@ namespace ICUParserLibUnitTest
         public void TestPluralMessageOtherIsLastSelector()
         {
             // Initialize.
-            string input = @"{0, plural,
+            string input = @"{days, plural,
                 =1 { Relaunch Microsoft Edge within a day}
                 other { Relaunch Microsoft Edge within # days}}";
 
@@ -61,26 +61,46 @@ namespace ICUParserLibUnitTest
             Assert.IsTrue(icuParser.IsICU);
 
             List<MessageItem> messageItems = icuParser.GetMessageItems();
-            string output = icuParser.ComposeMessageText(messageItems);
-
-            /*
-                {0, plural,
-                        =1 { Relaunch Microsoft Edge within a day}
-                        zero { Relaunch Microsoft Edge within # days}
-                        one { Relaunch Microsoft Edge within # days}
-                        two { Relaunch Microsoft Edge within # days}
-                        few { Relaunch Microsoft Edge within # days}
-                        many { Relaunch Microsoft Edge within # days}
-                        other { Relaunch Microsoft Edge within # days}}
-            */
 
             // Assert.
             Assert.AreEqual(7, messageItems.Count);
-            Assert.IsTrue(output.IndexOf("other") > output.IndexOf("zero"));
-            Assert.IsTrue(output.IndexOf("other") > output.IndexOf("one"));
-            Assert.IsTrue(output.IndexOf("other") > output.IndexOf("two"));
-            Assert.IsTrue(output.IndexOf("other") > output.IndexOf("many"));
-            Assert.IsTrue(output.IndexOf("other") > output.IndexOf("few"));
+
+            // Composed string for 'de'.
+            string outputDE = icuParser.ComposeMessageText(messageItems, CultureInfo.GetCultureInfo("de"));
+
+            // {days, plural,
+            //                =1 { Relaunch Microsoft Edge within a day}
+            //                one { Relaunch Microsoft Edge within # days}
+            //                other { Relaunch Microsoft Edge within # days}}
+            Assert.AreEqual("{days, plural,\r\n                =1 { Relaunch Microsoft Edge within a day}\r\n                one { Relaunch Microsoft Edge within # days}\r\n                other { Relaunch Microsoft Edge within # days}}", outputDE);
+
+            // Composed string for 'ja'.
+            string outputJA = icuParser.ComposeMessageText(messageItems, CultureInfo.GetCultureInfo("ja"));
+
+            // {days, plural,
+            //                =1 { Relaunch Microsoft Edge within a day}
+            //                other { Relaunch Microsoft Edge within # days}}
+            Assert.AreEqual("{days, plural,\r\n                =1 { Relaunch Microsoft Edge within a day}\r\n                other { Relaunch Microsoft Edge within # days}}", outputJA);
+
+            // Composed string for 'ar'.
+            string outputAR = icuParser.ComposeMessageText(messageItems, CultureInfo.GetCultureInfo("ar"));
+
+            // {days, plural,
+            //                =1 { Relaunch Microsoft Edge within a day}
+            //                zero { Relaunch Microsoft Edge within # days}
+            //                one { Relaunch Microsoft Edge within # days}
+            //                two { Relaunch Microsoft Edge within # days}
+            //                few { Relaunch Microsoft Edge within # days}
+            //                many { Relaunch Microsoft Edge within # days}
+            //                other { Relaunch Microsoft Edge within # days}}
+            Assert.AreEqual("{days, plural,\r\n                =1 { Relaunch Microsoft Edge within a day}\r\n                zero { Relaunch Microsoft Edge within # days}\r\n                one { Relaunch Microsoft Edge within # days}\r\n                two { Relaunch Microsoft Edge within # days}\r\n                few { Relaunch Microsoft Edge within # days}\r\n                many { Relaunch Microsoft Edge within # days}\r\n                other { Relaunch Microsoft Edge within # days}}", outputAR);
+
+            // Ensure the correct order.
+            Assert.IsTrue(outputAR.IndexOf("other") > outputAR.IndexOf("zero"));
+            Assert.IsTrue(outputAR.IndexOf("other") > outputAR.IndexOf("one"));
+            Assert.IsTrue(outputAR.IndexOf("other") > outputAR.IndexOf("two"));
+            Assert.IsTrue(outputAR.IndexOf("other") > outputAR.IndexOf("many"));
+            Assert.IsTrue(outputAR.IndexOf("other") > outputAR.IndexOf("few"));
         }
 
         /// <summary>
