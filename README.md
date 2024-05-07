@@ -2,15 +2,18 @@
 
 [![](https://home.unicode.org/wp-content/uploads/2019/12/Unicode-Logo-Final-Blue-95x112.jpg)](https://icu.unicode.org/home)
 
+## Introduction
 
-[ICU Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)
+ICU [(icu.unicode.org)](https://icu.unicode.org) provides Unicode and Globalization support for software applications.  
 
-[ANTLR](https://www.antlr.org/) 
+One of them are the [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html) that defines how plurals are used.
 
-> This repo has been populated by an initial template to help get you started. Please
-> make sure to update the content to build a great experience for community-building.
+This library is using the [ANTLR](https://www.antlr.org/) Framework to segment the ICU plural formatting.
+
 
 <br/>
+
+## Language example
 
 English, using 'one' and 'other' plural selector:
 <pre>
@@ -47,7 +50,7 @@ Arabic, using all plural selectors:
                other {أعد تشغيل Microsoft Edge في غضون # other أيام}}
 </pre>
 
-
+## Code example
 
 
 Instantiate a ICUParser object:
