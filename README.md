@@ -5,13 +5,9 @@
 ## Introduction
 
 ICU [(icu.unicode.org)](https://icu.unicode.org) provides Unicode and Globalization support for software applications.  
-
-One of them are the [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html) that defines how plurals are used.
-
+One of them are the [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html) that defines how plurals are used.  
 This library is using the [ANTLR](https://www.antlr.org/) Framework to segment the ICU plural formatting.
 
-
-<br/>
 
 ## Language example
 
