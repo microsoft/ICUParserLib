@@ -20,7 +20,7 @@ English, using 'one' and 'other' plural selector:
 </pre>
 <br/>
 
-French, using 'one', 'many' and 'other' plural selector
+French, using 'one', 'many' and 'other' plural selector:
 <pre>
 {days, plural,
                one {Relancez Microsoft Edge dans le # jour}
@@ -29,14 +29,14 @@ French, using 'one', 'many' and 'other' plural selector
 </pre>
 <br/>
 
-Japanese, using only the 'other' plural selector
+Japanese, using only the 'other' plural selector:
 <pre>
 {days, plural,
-               other {Relaunch Microsoft Edge within # days}}
+               other {# 日以内に Microsoft Edge を再起動します}}
 </pre>
 <br/>
 
-Arabic, using all plural selectors.
+Arabic, using all plural selectors:
 <pre>
 {days, plural,
                one {أعد تشغيل Microsoft Edge خلال # one يوم}
