@@ -10,7 +10,7 @@ ICU [(icu.unicode.org)](https://icu.unicode.org) stands for International Compon
 One of them is the [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html) that defines how plurals are used.  
 
 Most applications take a singular and a plural form, e.g. ```%1 file(s) found```.
-This works for some European languages, but omits many other languages. For example, Japanese languages, like most Asian languages, do not have a concept of plural forms, while languages like Arabic have multiple forms of plural forms.
+This works for some European languages, but omits many other languages. For example, Japanese language, like most Asian languages, do not have a concept of plural forms, while languages like Arabic have multiple forms of plural forms.
 
 This library can be used to segment ICU strings, replace the individual content with the translation, and compose the correct message form for that language.
 
