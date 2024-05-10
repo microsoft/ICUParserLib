@@ -4,10 +4,15 @@
 
 ## Introduction
 
-ICU [(icu.unicode.org)](https://icu.unicode.org) provides Unicode and Globalization support for software applications.  
-One of them are the [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html) that defines how plurals are used.  
-This library is using the [ANTLR](https://www.antlr.org/) Framework to segment the ICU plural formatting.
+This library uses the [ANTLR](https://www.antlr.org/) framework to segment the formatting of ICU messages.  
+ICU [(icu.unicode.org)](https://icu.unicode.org) stands for International Components for Unicode and provides Unicode and globalization support for software applications.
 
+One of them is the [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html) that defines how plurals are used.  
+
+Most applications take a singular and a plural form, e.g. ```%1 file(s) found```.
+This works for some European languages, but omits many other languages. For example, Japanese languages, like most Asian languages, do not have a concept of plural forms, while languages like Arabic have multiple forms of plural forms.
+
+This library can be used to segment ICU strings, replace the individual content with the translation, and compose the correct message form for that language.
 
 ## Language example
 
@@ -48,8 +53,7 @@ Arabic, using all plural selectors:
 
 ## Code example
 
-
-Instantiate a ICUParser object:
+To segment an ICU message structure, instantiate an ICUParser object and specify the ICU message:  
 ```
 string input = @"{days, plural,
     one {Relaunch Microsoft Edge within # day}
@@ -58,7 +62,7 @@ string input = @"{days, plural,
 ICUParser icuParser = new ICUParser(input, true);
 ```
 
-The library parses the input and segments the content to all possible plural selectors. Additional selectors gets copied from the 'other' selector.
+The library parses the input and segments the content into all possible plural selectors. Additional selectors are copied from the 'other' selector.
 
 ```
 List<MessageItem> messageItems = icuParser.GetMessageItems();
@@ -83,10 +87,10 @@ List<MessageItem> messageItems = icuParser.GetMessageItems();
     messageItems[5].Text="Relaunch Microsoft Edge within # days"
 
 
-The message segments gets translated and the final ICU message block gets composed:
+The message segments gets translated and the final ICU message block is created using the ```ComposeMessageText``` API:  
 
 ```
-// Composed string for 'fr'.
+// Composed ICU message string for 'fr'.
 string output = icuParser.ComposeMessageText(messageItems, CultureInfo.GetCultureInfo("fr"));
 ```
 <br/>
