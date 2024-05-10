@@ -1,14 +1,108 @@
-# Project
+# ICUParserLib
 
-> This repo has been populated by an initial template to help get you started. Please
-> make sure to update the content to build a great experience for community-building.
+[![](https://home.unicode.org/wp-content/uploads/2019/12/Unicode-Logo-Final-Blue-95x112.jpg)](https://icu.unicode.org/home)
 
-As the maintainer of this project, please make a few updates:
+## Introduction
 
-- Improving this README.MD file to provide a great experience
-- Updating SUPPORT.MD with content about this project's support experience
-- Understanding the security reporting process in SECURITY.MD
-- Remove this section from the README
+This library uses the [ANTLR](https://www.antlr.org/) framework to segment the formatting of ICU messages.  
+ICU [(icu.unicode.org)](https://icu.unicode.org) stands for International Components for Unicode and provides Unicode and globalization support for software applications.
+
+One of them is the [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html) that defines how plurals are used.  
+
+Most applications take a singular and a plural form, e.g. ```%1 file(s) found```.
+This works for some European languages, but omits many other languages. For example, Japanese languages, like most Asian languages, do not have a concept of plural forms, while languages like Arabic have multiple forms of plural forms.
+
+This library can be used to segment ICU strings, replace the individual content with the translation, and compose the correct message form for that language.
+
+## Language example
+
+English, using 'one' and 'other' plural selector:
+<pre>
+{days, plural,
+               one {Relaunch Microsoft Edge within # day}
+               other {Relaunch Microsoft Edge within # days}}
+</pre>
+<br/>
+
+French, using 'one', 'many' and 'other' plural selector:
+<pre>
+{days, plural,
+               one {Relancez Microsoft Edge dans le # jour}
+               many {Relancez Microsoft Edge dans les # jours}
+               other {Relancez Microsoft Edge dans les # jours}}
+</pre>
+<br/>
+
+Japanese, using only the 'other' plural selector:
+<pre>
+{days, plural,
+               other {# 日以内に Microsoft Edge を再起動します}}
+</pre>
+<br/>
+
+Arabic, using all plural selectors:
+<pre>
+{days, plural,
+               one {أعد تشغيل Microsoft Edge خلال # one يوم}
+               zero {أعد تشغيل Microsoft Edge في غضون # zero أيام}
+               two {أعد تشغيل Microsoft Edge في غضون # two أيام}
+               few {أعد تشغيل Microsoft Edge في غضون # few أيام}
+               many {أعد تشغيل Microsoft Edge في غضون # many أيام}
+               other {أعد تشغيل Microsoft Edge في غضون # other أيام}}
+</pre>
+
+## Code example
+
+To segment an ICU message structure, instantiate an ICUParser object and specify the ICU message:  
+```
+string input = @"{days, plural,
+    one {Relaunch Microsoft Edge within # day}
+    other {Relaunch Microsoft Edge within # days}}";
+
+ICUParser icuParser = new ICUParser(input, true);
+```
+
+The library parses the input and segments the content into all possible plural selectors. Additional selectors are copied from the 'other' selector.
+
+```
+List<MessageItem> messageItems = icuParser.GetMessageItems();
+```
+
+    messageItems[0].Plural="one"
+    messageItems[0].Text="Relaunch Microsoft Edge within # day"
+
+    messageItems[1].Plural="other"
+    messageItems[1].Text="Relaunch Microsoft Edge within # days"
+
+    messageItems[2].Plural="zero"
+    messageItems[2].Text="Relaunch Microsoft Edge within # days"
+
+    messageItems[3].Plural="two"
+    messageItems[3].Text="Relaunch Microsoft Edge within # days"
+
+    messageItems[4].Plural="few"
+    messageItems[4].Text="Relaunch Microsoft Edge within # days"
+
+    messageItems[5].Plural="many"
+    messageItems[5].Text="Relaunch Microsoft Edge within # days"
+
+
+The message segments gets translated and the final ICU message block is created using the ```ComposeMessageText``` API:  
+
+```
+// Composed ICU message string for 'fr'.
+string output = icuParser.ComposeMessageText(messageItems, CultureInfo.GetCultureInfo("fr"));
+```
+<br/>
+
+<pre>
+{days, plural,
+               one {Relancez Microsoft Edge dans le # (translated for one) jour}
+               many {Relancez Microsoft Edge dans les # (translated for many) jours}
+               other {Relancez Microsoft Edge dans les # (translated for other) jours}}
+</pre>
+
+<br/>
 
 ## Contributing
 
