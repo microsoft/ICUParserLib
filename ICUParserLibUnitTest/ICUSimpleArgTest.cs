@@ -50,7 +50,7 @@ namespace ICUParserLibUnitTest
         [TestMethod]
         public void TestInvalidSimpleArgMessage()
         {
-            string input = @"{1, unknown}";
+            string input = @"{test, unknown}";
 
             ICUParser icuParser = new ICUParser(input);
 
@@ -65,7 +65,7 @@ namespace ICUParserLibUnitTest
         [TestMethod]
         public void TestUnclosedSimpleArgMessage()
         {
-            string input = @"{1, time, short";
+            string input = @"{test, time, short";
 
             ICUParser icuParser = new ICUParser(input);
 
@@ -109,7 +109,7 @@ namespace ICUParserLibUnitTest
         public void TestEdgeRatingArgument()
         {
             // Initialize.
-            string input = @"{1, plural,
+            string input = @"{count, plural,
                   =1 {Rated <ph name=""AVERAGE_RATING""><ex>3.2</ex>{0, number,0.0}</ph> by one user.}
                   other{Rated <ph name=""AVERAGE_RATING""><ex>3.2</ex>{0, number,0.0}</ph> by # users.}}";
 

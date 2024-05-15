@@ -37,7 +37,7 @@ simpleArgNameOrNumber : argNameOrNumber;
 //choiceArg : MESSAGEFORMAT_BEGIN argNameOrNumber SEPARATOR CHOICE_KEYWORD SEPARATOR choiceStyle MESSAGEFORMAT_END;
 //choiceStyle: see ChoiceFormat
 
-// Example: {0, plural,
+// Example: {count, plural,
 //            =1 { Relaunch Microsoft Edge within a day}
 //            other { Relaunch Microsoft Edge within # days}}
 pluralArg : MESSAGEFORMAT_BEGIN pluralArgNameOrNumber SEPARATOR PLURAL_KEYWORD SEPARATOR offsetValue? pluralStyles MESSAGEFORMAT_END;
@@ -49,7 +49,7 @@ selectorPlural : explicitValue | keyword;
 explicitValue : EQUAL_SIGN NUMBER;
 keyword : KEYWORD;
 
-// Example: {1, select, female {allée} other {allé}} à Paris.
+// Example: {gender, select, female {allée} other {allé}} à Paris.
 selectArg : MESSAGEFORMAT_BEGIN selectArgNameOrNumber SEPARATOR SELECT_KEYWORD SEPARATOR selectStyle+ MESSAGEFORMAT_END;
 selectArgNameOrNumber : argNameOrNumber;
 selectStyle : selectorSelect ARGUMENT_BEGIN message ARGUMENT_END;

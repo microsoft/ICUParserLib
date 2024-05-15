@@ -551,7 +551,7 @@ namespace ICUParserLibUnitTest
                   zero {'zero' notifications}
                     =0 {'=0' notification}
                    one { 
-                            {0, plural,
+                            {count, plural,
                                 zero { Relaunch Microsoft Edge within 'zero'}
                                   =1 { Relaunch Microsoft Edge within '=1'}
                                  one { Relaunch Microsoft Edge within 'one'}

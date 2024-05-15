@@ -21,7 +21,7 @@ namespace ICUParserLibUnitTest
         public void TestEmbeddedMessageTextOnly()
         {
             // Embedded messages are text only.
-            string input = @"{1, select, 
+            string input = @"{gender, select, 
                     female {allée} 
                     other {allé # }
                     }";
@@ -50,7 +50,7 @@ namespace ICUParserLibUnitTest
         public void TestEmbeddedMessageStrictPlural()
         {
             // Embedded messages are strict plural type.
-            string input = @"{1, select, 
+            string input = @"{gender, select, 
                     female {allée} 
                     other {{age, plural, 
                             =0 {less than one year old} 
@@ -84,7 +84,7 @@ namespace ICUParserLibUnitTest
         public void TestEmbeddedMessageNonStrictPlural()
         {
             // Embedded messages are non strict plural type.
-            string input = @"{1, select, 
+            string input = @"{gender, select, 
                     female {allée} 
                     other {Your device is {age, plural, 
                             =0 {less than one year old} 
@@ -113,7 +113,7 @@ namespace ICUParserLibUnitTest
         public void TestEmbeddedMessageNonStrictPluralWithStrictParse()
         {
             // Embedded messages are non strict plural type.
-            string input = @"{1, select, 
+            string input = @"{gender, select, 
                     female {allée} 
                     other {Your device is {age, plural, 
                             =0 {less than one year old} 
