@@ -21,7 +21,7 @@ namespace ICUParserLibUnitTest
         public void TestSubmitICUMessageFormatString()
         {
             // Initialize with invalid input.
-            string input = @"{0, TESTplural,
+            string input = @"{count, TESTplural,
                 =1 { Relaunch Microsoft Edge within a day}
                 other { Relaunch Microsoft Edge within # days}}";
 
@@ -35,11 +35,11 @@ namespace ICUParserLibUnitTest
             if (!icuParser.Success)
             {
                 string errorMsgs = string.Join(",", icuParser.Errors);
-                Assert.AreEqual("Error in line 1, pos 4: no viable alternative at input '{0,TESTplural'", errorMsgs);
+                Assert.AreEqual("Error in line 1, pos 8: no viable alternative at input '{count,TESTplural'", errorMsgs);
             }
 
             // Run again with valid input.
-            input = @"{0, plural,
+            input = @"{count, plural,
                 =1 { Relaunch Microsoft Edge within a day}
                 other { Relaunch Microsoft Edge within # days}}";
 

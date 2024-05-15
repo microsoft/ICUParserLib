@@ -22,7 +22,7 @@ namespace ICUParserLibUnitTest
         public void TestPluralMessageWithLockedSubstring()
         {
             // Initialize.
-            string input = @"{0, plural,
+            string input = @"{count, plural,
                 =1 { Relaunch Microsoft Edge within a day}
                 other { Relaunch Microsoft Edge within # days}}";
 
@@ -183,7 +183,7 @@ namespace ICUParserLibUnitTest
         public void TestPluralMessageStrictParseWhiteSpace()
         {
             // Initialize.
-            string input = @"  {0, plural,
+            string input = @"  {count, plural,
                 =1 { Relaunch Microsoft Edge within a day}
                 other { Relaunch Microsoft Edge within # days}}  ";
 
@@ -211,7 +211,7 @@ namespace ICUParserLibUnitTest
         public void TestPluralMessageStrictParseWith0And1()
         {
             // Initialize.
-            string input = @"{0, plural,
+            string input = @"{count, plural,
                   =0 {A Microsoft Edge update is available}
                   =1 {A Microsoft Edge update is available}
                   other {A Microsoft Edge update has been available for # days}}";
@@ -438,7 +438,7 @@ namespace ICUParserLibUnitTest
         public void TestPluralMessagePluralFillInText()
         {
             // Initialize.
-            string input = @"{0, plural,
+            string input = @"{count, plural,
                 =1 { Relaunch Microsoft Edge within a day}
                 other { Relaunch Microsoft Edge within # days}}";
 
@@ -491,7 +491,7 @@ namespace ICUParserLibUnitTest
         [TestMethod]
         public void TestPluralMessageAddPluralOtherSelector()
         {
-            string input = @"{0, plural,
+            string input = @"{count, plural,
                 =1 { Relaunch Microsoft Edge within a day}
                 other { Relaunch Microsoft Edge within # days}}";
 
@@ -532,7 +532,7 @@ namespace ICUParserLibUnitTest
         [TestMethod]
         public void TestPluralMessageAddPluralNoOtherSelector()
         {
-            string input = @"{0, plural,
+            string input = @"{count, plural,
                 =1 { Relaunch Microsoft Edge within a day}
                 other { Relaunch Microsoft Edge within # days}}";
 
@@ -573,10 +573,10 @@ namespace ICUParserLibUnitTest
         [TestMethod]
         public void TestPluralMessagePluralId()
         {
-            string input = @"{0, plural,
+            string input = @"{count, plural,
                 =1 { 
-                    {1, select, female {
-                        {0, plural,
+                    {gender, select, female {
+                        {count, plural,
                         =1 { 1Relaunch Microsoft Edge within a day}
                         =2 { 1Relaunch Microsoft Edge within # days}
                         other { 1Relaunch Microsoft Edge within # days}}
@@ -597,8 +597,8 @@ namespace ICUParserLibUnitTest
             /*
             {0, plural,
                 =1 {
-                    {1, select, female {
-                        {0, plural,
+                    {gender, select, female {
+                        {count, plural,
                         =1 { 1Relaunch Microsoft Edge within a day}
                         =2 { 1Relaunch Microsoft Edge within # days}
                         zero { 1Relaunch Microsoft Edge within # days}
@@ -629,7 +629,7 @@ namespace ICUParserLibUnitTest
         [TestMethod]
         public void TestPluralMessageAddPluralWithPlaceholder()
         {
-            string input = @"{1, plural,
+            string input = @"{test, plural,
                  =1 {This server could not prove that it is <ph name=""DOMAIN""><ex>paypal.com</ex>&lt;strong&gt;{0}&lt;/strong&gt;</ph>; its security certificate expired in the last day. This may be caused by a misconfiguration or an attacker intercepting your connection. Your computer&apos;s clock is currently set to <ph name=""CURRENT_DATE""><ex>Monday, July 16, 2012</ex>{2, date, full}</ph>. Does that look right? If not, you should correct your system&apos;s clock and then refresh this page.}
                  other {This server could not prove that it is <ph name=""DOMAIN""><ex>paypal.com</ex>&lt;strong&gt;{0}&lt;/strong&gt;</ph>; its security certificate expired # days ago. This may be caused by a misconfiguration or an attacker intercepting your connection. Your computer&apos;s clock is currently set to <ph name=""CURRENT_DATE""><ex>Monday, July 16, 2012</ex>{2, date, full}</ph>. Does that look right? If not, you should correct your system&apos;s clock and then refresh this page.}}";
 
@@ -750,7 +750,7 @@ namespace ICUParserLibUnitTest
         public void TestPluralMessageWithDuplicateRemoval()
         {
             // Initialize.
-            string input = @"{0, plural, 
+            string input = @"{count, plural, 
                 =1{Relaunch Microsoft Edge within {testNoneArgText} a day} 
                 =2{Relaunch Microsoft Edge within {testNoneArgText} a day}
                 other {Relaunch Microsoft Edge within # days}}";

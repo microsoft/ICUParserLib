@@ -20,7 +20,7 @@ namespace ICUParserLibUnitTest
         [TestMethod]
         public void TestSelectMessage1()
         {
-            string input = @"{1, select, female {allée} other {allé # }}";
+            string input = @"{gender, select, female {allée} other {allé # }}";
 
             ICUParser icuParser = new ICUParser(input);
 
@@ -49,7 +49,7 @@ namespace ICUParserLibUnitTest
         [TestMethod]
         public void TestSelectMessageStrictParse()
         {
-            string input = @"{1, select, female {allée} other {allé}} à Paris.";
+            string input = @"{gender, select, female {allée} other {allé}} à Paris.";
 
             ICUParser icuParser = new ICUParser(input);
 
@@ -200,7 +200,7 @@ namespace ICUParserLibUnitTest
         [TestMethod]
         public void TestInvalidSelectMessage()
         {
-            string input = @"{1, tceles, female {allée} other {allé}} à Paris.";
+            string input = @"{gender, tceles, female {allée} other {allé}} à Paris.";
 
             ICUParser icuParser = new ICUParser(input);
 
@@ -214,7 +214,7 @@ namespace ICUParserLibUnitTest
         [TestMethod]
         public void TestInvalidParameterSelectMessage()
         {
-            string input = @"{1, select, none}";
+            string input = @"{gender, select, none}";
 
             ICUParser icuParser = new ICUParser(input);
 
