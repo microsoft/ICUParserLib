@@ -22,7 +22,7 @@ namespace ICUParserLibUnitTest
         public void TestPluralMessageWithLockedSubstring()
         {
             // Initialize.
-            string input = @"{0, plural,
+            string input = @"{count, plural,
                 =1 { Relaunch Microsoft Edge within a day}
                 other { Relaunch Microsoft Edge within # days}}";
 
@@ -211,7 +211,7 @@ namespace ICUParserLibUnitTest
         public void TestPluralMessageStrictParseWith0And1()
         {
             // Initialize.
-            string input = @"{0, plural,
+            string input = @"{count, plural,
                   =0 {A Microsoft Edge update is available}
                   =1 {A Microsoft Edge update is available}
                   other {A Microsoft Edge update has been available for # days}}";
@@ -438,7 +438,7 @@ namespace ICUParserLibUnitTest
         public void TestPluralMessagePluralFillInText()
         {
             // Initialize.
-            string input = @"{0, plural,
+            string input = @"{count, plural,
                 =1 { Relaunch Microsoft Edge within a day}
                 other { Relaunch Microsoft Edge within # days}}";
 
@@ -491,7 +491,7 @@ namespace ICUParserLibUnitTest
         [TestMethod]
         public void TestPluralMessageAddPluralOtherSelector()
         {
-            string input = @"{0, plural,
+            string input = @"{count, plural,
                 =1 { Relaunch Microsoft Edge within a day}
                 other { Relaunch Microsoft Edge within # days}}";
 
@@ -532,7 +532,7 @@ namespace ICUParserLibUnitTest
         [TestMethod]
         public void TestPluralMessageAddPluralNoOtherSelector()
         {
-            string input = @"{0, plural,
+            string input = @"{count, plural,
                 =1 { Relaunch Microsoft Edge within a day}
                 other { Relaunch Microsoft Edge within # days}}";
 
@@ -573,7 +573,7 @@ namespace ICUParserLibUnitTest
         [TestMethod]
         public void TestPluralMessagePluralId()
         {
-            string input = @"{0, plural,
+            string input = @"{count, plural,
                 =1 { 
                     {1, select, female {
                         {0, plural,
@@ -750,7 +750,7 @@ namespace ICUParserLibUnitTest
         public void TestPluralMessageWithDuplicateRemoval()
         {
             // Initialize.
-            string input = @"{0, plural, 
+            string input = @"{count, plural, 
                 =1{Relaunch Microsoft Edge within {testNoneArgText} a day} 
                 =2{Relaunch Microsoft Edge within {testNoneArgText} a day}
                 other {Relaunch Microsoft Edge within # days}}";

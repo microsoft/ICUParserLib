@@ -10,6 +10,10 @@ namespace ICUParserLibUnitTest
 
     /// <summary>
     /// Tests <see cref="ICUParser"/>.
+    /// .
+    /// Note: selectordinal is defined in the syntax, but processing is not yet implemented.
+    /// TODO: Add ordinal plural category data and add ordinal plural processing.
+    /// .
     /// </summary>
     public partial class ICUTest
     {

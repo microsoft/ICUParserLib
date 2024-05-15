@@ -449,7 +449,7 @@ namespace ICUParserLibUnitTest
         public void TestPluralMessageWithLanguageRange()
         {
             // Initialize.
-            string input = @"{0, plural,
+            string input = @"{count, plural,
                 =1 { Relaunch Microsoft Edge within a day}
                 other { Relaunch Microsoft Edge within # days}}";
 
@@ -814,7 +814,7 @@ namespace ICUParserLibUnitTest
         public void TestPluralLanguageListGetMessageItemsData()
         {
             // Initialize.
-            string input = @"{0, plural,
+            string input = @"{count, plural,
                 =1 { Relaunch Microsoft Edge within a day}
                 many { Relaunch Microsoft Edge within a day}
                 other { Relaunch Microsoft Edge within # days}}";
