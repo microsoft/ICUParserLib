@@ -86,7 +86,7 @@ namespace ICUParserLib
             }
 
             // Any ICU plural message needs to have an 'other' plural range.
-            if (this.Success && this.messageFormatVisitor.PluralDataList.Count > 0)
+            if (this.Success && this.messageFormatVisitor.UsedPluralSelectors.Count > 0)
             {
                 foreach (string id in this.messageFormatVisitor.UsedPluralSelectors.Keys)
                 {
